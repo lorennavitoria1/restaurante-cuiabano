@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dito Lambari - Contato</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css">
+    <style>
+        #emailLink:focus {
+    outline: none;
+}
+
+    </style>
 </head>
 <body style="background-color: rgb(237, 240, 243);">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,13 +24,13 @@
                     <a class="nav-link" href="index.html">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="sobre.html">Sobre</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="receitas.html">Receitas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contato.html">Contato</a>
+                </li>
+                <li class= "nav-item">
+                    <a class="nav-link" href="sobre.html">Sobre</a>
                 </li>
             </ul>
         </div>
@@ -32,13 +38,25 @@
     <div class="container">
         <h2>Informações de Contato</h2>
         <p>Telefone: (55) 1234-5678</p>
-        <p>Email: contato@ditolambari.com</p>
+        <div id="emailLink" contenteditable>contato@ditolambari.com <button onclick="copiarTexto()" type="button">Copiar</button></div>
+      
         <p>
             <a href="https://www.instagram.com/ditolambari" target="_blank">Instagram</a>
             <br>
             <a href="https://www.facebook.com/ditolambari" target="_blank">Facebook</a>
         </p>
     </div>
+    <script>
+       function copiarTexto() {
+        var textoCopiado = document.getElementById("emailLink");
+        var range = document.createRange();
+        range.selectNode(textoCopiado);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        alert("Endereço de e-mail copiado");
+    }
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 </body>
