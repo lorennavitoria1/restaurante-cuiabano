@@ -20,6 +20,9 @@
             max-width: 700px;
             margin: 0 auto;
         }
+        .fade-text {
+            display: none;
+        }
     </style>
     
     
@@ -50,7 +53,12 @@
         </nav>
     </header>
 
-    <button id="botaoCliqueMe">Ganhe um presente</button>
+    <button id="botaoCliqueMe" class="fade-text" style="background-color: #ff9900; color: white;">Ganhe um presente</button>
+
+    <div id="campoEmail" style="display: none;">
+        <input type="text" id="inputEmail" placeholder="Insira seu email">
+        <button id="botaoPresente">Ganhe seu presente</button>
+    </div>
 
     <hgroup>
         <br/>
@@ -98,30 +106,61 @@
 
     <div class="container container-align mt-5">
         <h2>Aproveite o nosso espaço</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <img src="img/espaco-interno-climatizado.jpg" class="img-fluid" alt="Interior do Restaurante" height="102px">
-                <p>Interior Aconchegante</p>
-            </div>
-            <div class="col-md-4">
-                <img src="img/receita2.jpg" class="img-fluid" alt="Prato Cuiabano" height="102px">
-                <p>Deliciosos pratos</p>
-            </div>
-            <div class="col-md-4">
-                <img src="img/playground-de-madeira-para-restaurante-1.jpg" class="img-fluid" alt="Prato Cuiabano" height="102px">
-                <p>Diversão para as crianças</p>
+        <button id="toggleDescription">Descubra o que temos de melhor</button>
+        <div id="description" style="display: none;">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="img/espaco-interno-climatizado.jpg" class="img-fluid" alt="Interior do Restaurante" height="102px">
+                    <p>Interior Aconchegante</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="img/receita2.jpg" class="img-fluid" alt="Prato Cuiabano" height="102px">
+                    <p>Deliciosos pratos</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="img/playground-de-madeira-para-restaurante-1.jpg" class="img-fluid" alt="Prato Cuiabano" height="102px">
+                    <p>Diversão para as crianças</p>
+                </div>
             </div>
         </div>
     </div>
-
    
-
+    <br/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $("#botaoCliqueMe").click(function() {
-            alert("Parabéns, você acaba de ganhar um cupom de desconto! Basta falar o códico COMIDACUIABANA no nosso restaurante!");
+       $("#botaoCliqueMe").click(function() {
+
+        $("#campoEmail").slideDown("slow");
+            $("#botaoCliqueMe").hide();
         });
+
+        $("#botaoPresente").click(function() {
+            var email = $("#inputEmail").val();
+            if (email !== "") {
+                $("#campoEmail").hide();
+                var mensagem = "Parabéns " + email + ", você acaba de ganhar um cupom de desconto! Basta falar o código COMIDACUIABANA no nosso restaurante!";
+                alert(mensagem);
+            } else {
+                alert("Por favor, insira um email válido.");
+            }
+        });
+
+        $(document).ready(function() {
+            $('.fade-text').fadeIn(2000).fadeOut(2000).fadeIn(2000);
+        });
+
+        $(document).ready(function() {
+            $('#toggleDescription').click(function() {
+                $('#description').toggle();
+                var buttonText = $('#description').is(':visible') ? 'Veja menos' : 'Descubra o que temos de melhor';
+                $(this).text(buttonText);
+            });
+        });
+
+       
     </script>
+
+
    
     <footer>
         <div class="container">
